@@ -10,11 +10,12 @@ $ mkdir src & cd src
 $ git clone xxxx
 
 # 3.Compile
+$ cd ${your worksapce}
 $ colcon build --packages-select bag_recorder_nodes_py
 
 # 4.Run
 parser bag files
-There are two ways, one is using ROS2 synchronization method;and the other is to package the parsed data with sequqnce, provided that the parsed data is stored in advance.
+There are two ways. one is using ROS2 synchronization method; and the other is to package the parsed data with sequqnce, provided that the parsed data is stored in advance.
 
 
 ## a:
