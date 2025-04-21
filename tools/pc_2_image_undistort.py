@@ -15,7 +15,7 @@ import math
 
 data_root = '/home/pix/ws/dataset/pix/university_city'
 sequence_index = 'sequence00000'
-camera_index = 'camera1'
+camera_index = 'camera4'
 idx = 0
 
 
@@ -156,7 +156,6 @@ def distort(camera_intrinsic_data, save=None):
     resolution=(1920, 1080)
     img = Image.open(img_before)
     img = img.resize(resolution)
-    return np.asarray(img)
     img_bgr = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
 
     img_distort_np = distortionCorrection(K, D, img_bgr)

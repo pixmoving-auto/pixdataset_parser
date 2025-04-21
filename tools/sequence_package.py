@@ -125,7 +125,7 @@ def main(load_dir:str, save_dir:str):
 
         # pdb.set_trace()
         idx_cam1, diff_cam1 = find_nearst(time_float, cam1_array, last_index[1-1], 999999)
-        print(diff_cam1)
+        # print(diff_cam1)
         last_index[1-1] = idx_cam1
         idx_cam2, diff_cam1 = find_nearst(time_float, cam2_array, last_index[2-1], 999999)
         last_index[2-1] = idx_cam2

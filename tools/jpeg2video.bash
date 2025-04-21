@@ -4,7 +4,7 @@ root="/home/pix/ws/dataset/pix/university_city/"
 sequence_idx="sequence00000/"
 camera_idx='CAM_FRONT_map/'
 dir=${root}${sequence_idx}${camera_idx}/*.jpeg
-video_name='cam_front.mp4'
+video_name='CAM_FRONT_map.mp4'
 
 
 # # # 生成按数字顺序排序的文件列表
