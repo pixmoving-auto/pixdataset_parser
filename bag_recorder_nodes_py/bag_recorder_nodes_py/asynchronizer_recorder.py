@@ -34,7 +34,7 @@ camera_time_offset = {
     'camera5': -0.4,
     'camera6': -0.4,
 }
-undistort_flag = False
+undistort_flag = True
 
 class TimeSyncNode(Node):
     def __init__(self, save_dir:str):
@@ -98,7 +98,7 @@ class TimeSyncNode(Node):
         calib_kit_dir = '/home/pix/ws/parameter/sensor_kit/robobus_sensor_kit_description/'
         self.camera_intrinsic_file_list = []
         for i in range(6):
-            self.camera_intrinsic_file_list.append(calib_kit_dir + 'intrinsic_parameters/'+ 'camera' + str(i) +'_params.yaml')
+            self.camera_intrinsic_file_list.append(calib_kit_dir + 'intrinsic_parameters/'+ 'camera' + str(i+1) +'_params.yaml')
         self.camera_intrinsic_data_list = {}
         self.get_calibration()
 
@@ -151,6 +151,11 @@ class TimeSyncNode(Node):
         # print(tf_dict)
 
     def pointcloud_cb(self, pointcloud):
+        file_time = float("{:0>10d}.{:0>9d}".format(pointcloud.header.stamp.sec, pointcloud.header.stamp.nanosec)) + lidar_time_offset
+        filename = "{:>20.9f}".format(file_time) + '.pcd'
+        self.f_lidar_list.write(filename+'\n')
+        self.f_lidar_list.flush()
+        self.tf_cb()
         success = self.pool.submit_task(self.save_pointcloud, pointcloud, os.path.join(self.raw_dir, "LIDAR"))
 
 
@@ -280,9 +285,9 @@ class TimeSyncNode(Node):
         # filename = "{:0>10d}.{:0>9d}".format(msg.header.stamp.sec, msg.header.stamp.nanosec) + '.pcd'
         pcl.save(cloud, os.path.join(dir, filename))
 
-        self.f_lidar_list.write(filename+'\n')
-        self.f_lidar_list.flush()
-        self.tf_cb()
+        # self.f_lidar_list.write(filename+'\n')
+        # self.f_lidar_list.flush()
+        # self.tf_cb()
         
         
         # pc_data = ros2_numpy.numpify(msg)

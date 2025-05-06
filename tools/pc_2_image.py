@@ -233,6 +233,16 @@ def main():
 
     coords = project(points, img, M1, M2)
     # pdb.set_trace()
+
+    calibration = {}
+    calibration[camera_index_map[camera_index]] = {}
+    calibration[camera_index_map[camera_index]]['M1'] = M1.tolist()
+    calibration[camera_index_map[camera_index]]['M2'] = M2.tolist()
+    f_cali = open(os.path.join(camera_index_map[camera_index] + '.json'), 'w', encoding='utf-8')
+    f_cali.write(json.dumps(calibration, ensure_ascii=False) )
+    f_cali.flush()
+    f_cali.close()
+    
     show_with_opencv(img, coords=coords, save=True, dir=str(os.path.join(data_root, sequence_index, camera_index_map[camera_index]))+ '_map/')
 
 

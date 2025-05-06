@@ -15,7 +15,7 @@ import math
 
 data_root = '/home/pix/ws/dataset/pix/university_city'
 sequence_index = 'sequence00000'
-camera_index = 'camera4'
+camera_index = 'camera1'
 idx = 0
 
 
